@@ -1,0 +1,18 @@
+name: Issue + PR management
+
+on: [push]
+
+jobs:
+  danger:
+      runs-on: ubuntu-latest
+      steps:
+            - uses: actions/checkout@v2
+            - name: Use Node.js
+              uses: actions/setup-node@v1
+              with:
+                  node-version: '15.x'
+            - name: Install yarn and danger
+              run: npm i -g yarn danger
+            - run: yarn install
+            - run: yarn run build
+            - run: danger ci
