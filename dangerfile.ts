@@ -7,8 +7,8 @@ if (danger.github.pr.body.length < 10) {
 
 // Request changes to src also include changes to tests.
 const allFiles = danger.git.modified_files.concat(danger.git.created_files);
-const hasAppChanges = allFiles.some((p) => includes(p, 'src/'));
-const hasTestChanges = allFiles.some((p) => includes(p, '__tests__/'));
+const hasAppChanges = allFiles.some((p) => p.includes('src/'));
+const hasTestChanges = allFiles.some((p) => p.includes('__tests__/'));
 
 if (hasAppChanges && !hasTestChanges) {
     warn(
