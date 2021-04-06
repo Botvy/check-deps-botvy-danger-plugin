@@ -11,8 +11,7 @@ jobs:
               uses: actions/setup-node@v1
               with:
                   node-version: '15.x'
-            - name: Install yarn and danger
-              run: npm i -g yarn danger
             - run: yarn install
             - run: yarn run build
-            - run: danger ci
+            - name: Danger JS Action
+              uses: danger/danger-js@9.1.8
