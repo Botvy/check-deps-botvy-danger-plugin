@@ -1,9 +1,18 @@
 import { danger, warn } from 'danger';
 
 // No PR is too small to include a description of why you made a change
-if (danger.github.pr !== undefined && danger.github.pr.body.length < 10) {
-    warn('Please include a description of your PR changes.');
+function checkPRBodyLength() {
+    if (danger.github.pr === undefined) {
+        return;
+    }
+
+    // @ts-ignore
+    if (danger.github.pr.body.length < 10) {
+        warn('Please include a description of your PR changes.');
+    }
 }
+
+checkPRBodyLength();
 
 // Request changes to src also include changes to tests.
 const allFiles = danger.git.modified_files.concat(danger.git.created_files);
