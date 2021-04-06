@@ -1,6 +1,6 @@
 name: Issue + PR management
 
-on: [push]
+on: [pull_request]
 
 jobs:
   danger:
